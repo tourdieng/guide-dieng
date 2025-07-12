@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Booking Guide Dieng – Form Kontak WA | Putratour.id</title>
+  <meta name="description" content="Form booking jasa guide Dieng. Kirim otomatis ke WhatsApp: isi nama, durasi guide, tanggal, dan catatan. Mudah dan cepat, hanya di Putratour.id"/>
+  <link rel="canonical" href="https://www.putratour.id/guide-dieng/kontak.html"/>
+  <link rel="stylesheet" href="/assets/style.css"/>
+  <style>
+    body { font-family:'Segoe UI',sans-serif; margin:0; background:#f5f8fc; color:#19335a;}
+    .dieng-header{background:#6a1b9a;color:white;padding:1rem 2rem;}
+    .dieng-header-title{color:#fff; font-size:1.3rem; font-weight:bold;}
+    nav {margin-top:8px;}
+    nav a{color:#fff; margin-right:18px; text-decoration:none; font-weight:500;}
+    .container{max-width:450px;margin:32px auto;padding:0 18px;}
+    h1{font-size:1.5rem;margin-bottom:16px;}
+    .form-box{background:#fff;border-radius:16px;box-shadow:0 2px 18px #0001;padding:26px 22px 18px 22px;}
+    .form-group{margin-bottom:19px;}
+    .form-group label{display:block;font-weight:500;margin-bottom:7px;}
+    .form-group input,.form-group select,.form-group textarea{
+      width:100%;border:1px solid #ccd4e0;border-radius:9px;
+      font-size:1.07rem;padding:9px 10px;margin-top:1px;box-sizing:border-box;transition:.13s;}
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:#1976d2;outline:none;}
+    .form-group textarea{min-height:58px;max-height:150px;}
+    .btn{
+      background:#1976d2;color:#fff;border:none;padding:11px 0;
+      border-radius:10px;font-weight:600;font-size:1.03rem;width:100%;
+      cursor:pointer;box-shadow:0 2px 10px #1976d205;transition:.13s;}
+    .btn:hover{background:#1250a5;}
+    .info-box{font-size:.98rem;color:#666;margin-bottom:19px;line-height:1.6;}
+    @media (max-width:650px){.container{padding:0 6px;}.dieng-header{padding:12px 7px;}}
+    footer{background:#19335a;color:#fff;}
+  </style>
+</head>
+<body>
+  <header class="dieng-header">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <a href="/" class="dieng-header-title" style="text-decoration:none;">Putratour.id</a>
+      <nav>
+        <a href="/guide-dieng/index.html">Home</a>
+        <a href="/guide-dieng/kontak.html">Kontak</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    <h1>Booking Guide Dieng</h1>
+    <div class="info-box">
+      Isi form berikut & klik <b>Kirim</b>, data otomatis dikirim ke WhatsApp admin kami. Balasan cepat jam kerja.<br>
+      <span style="color:#1976d2;font-weight:600;">*Semua kolom wajib diisi</span>
+    </div>
+    <form class="form-box" id="formGuide" autocomplete="on" onsubmit="return sendWA(event);">
+      <div class="form-group">
+        <label for="nama">Nama</label>
+        <input type="text" name="nama" id="nama" placeholder="Nama Lengkap" required>
+      </div>
+      <div class="form-group">
+        <label for="durasi">Butuh guide berapa hari?</label>
+        <select name="durasi" id="durasi" required>
+          <option value="">Pilih Durasi Guide</option>
+          <option value="1">1 Hari</option>
+          <option value="2">2 Hari</option>
+          <option value="3">3 Hari</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="tanggal">Tanggal Trip</label>
+        <input type="date" name="tanggal" id="tanggal" required>
+      </div>
+      <div class="form-group">
+        <label for="catatan">Catatan (opsional)</label>
+        <textarea name="catatan" id="catatan" placeholder="Tulis detail tambahan (jumlah peserta, permintaan khusus, dsb.)"></textarea>
+      </div>
+      <button type="submit" class="btn">Kirim</button>
+    </form>
+  </main>
+  <footer>
+    <div style="padding:14px 0;text-align:center;">
+      <div style="font-weight:600;font-size:1.08rem;">
+        &copy; <span id="tahun"></span> <a href="https://www.putratour.id/" style="color:#fff;text-decoration:none;">Putratour.id</a>
+      </div>
+      <div style="margin:6px 0 0 0;font-size:1.01rem;">
+        <span style="color:#90caf9;">Jasa Guide Dieng &mdash; Pemandu Wisata Lokal Terpercaya</span>
+      </div>
+      <div style="margin:8px 0 0 0;">
+        <a href="/guide-dieng/index.html" style="color:#90caf9;text-decoration:none;">Home</a> &bull;
+        <a href="/guide-dieng/kontak.html" style="color:#90caf9;text-decoration:none;">Kontak</a>
+      </div>
+      <div style="margin:9px 0 0 0;font-size:.98rem;color:#b6bde6;">
+        <span style="word-break:break-all;">www.putratour.id/guide-dieng/</span>
+      </div>
+    </div>
+  </footer>
+  <script>
+    // Footer tahun otomatis
+    document.getElementById('tahun').textContent = new Date().getFullYear();
+
+    // Anti index WA di crawler
+    const wa = '0811' + '2828' + '283';
+
+    // Minimal hari ini, tanggal tidak bisa ke belakang
+    document.addEventListener("DOMContentLoaded",function(){
+      let now = new Date();
+      let yyyy = now.getFullYear();
+      let mm = String(now.getMonth()+1).padStart(2,'0');
+      let dd = String(now.getDate()).padStart(2,'0');
+      let minDate = yyyy + '-' + mm + '-' + dd;
+      document.getElementById('tanggal').setAttribute('min',minDate);
+    });
+
+    // Kirim ke WA
+    function sendWA(e){
+      e.preventDefault();
+      var nama = document.getElementById('nama').value.trim();
+      var durasi = document.getElementById('durasi').value;
+      var tanggal = document.getElementById('tanggal').value;
+      var catatan = document.getElementById('catatan').value.trim();
+
+      // Validasi manual biar anti bug
+      if(!nama || !durasi || !tanggal){
+        alert('Semua field wajib diisi!');
+        return false;
+      }
+      // Format tanggal ke format lokal IDN (biar user paham)
+      let tgl = tanggal.split('-');
+      let tglID = tgl[2]+'-'+tgl[1]+'-'+tgl[0];
+
+      var pesan = 
+`*Booking Guide Dieng via Website*
+Nama: ${nama}
+Durasi Guide: ${durasi} Hari
+Tanggal Trip: ${tglID}
+Catatan: ${catatan ? catatan : '-'}
+(website: guide-dieng)`;      
+
+      var encoded = encodeURIComponent(pesan);
+
+      // Split wa agar tidak gampang keindex mesin pencari
+      var no = '62' + '811' + '2828' + '283';
+      var url = "https://wa.me/" + no + "?text=" + encoded;
+      window.open(url,'_blank');
+      return false;
+    }
+  </script>
+</body>
+</html>
