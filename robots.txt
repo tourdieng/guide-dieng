@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.putratour.id/guide-dieng/sitemap.xml
