@@ -8,7 +8,7 @@ Repository ini berisi resource gambar, aset, dan file pendukung untuk layanan **
 
 ---
 
-## Website Resmi Jasa Guide Dieng
+## Website Jasa Guide Dieng
 
 👉 [Kunjungi Halaman Resmi Guide Dieng – Putratour.id](https://www.putratour.id/guide-dieng/)
 
